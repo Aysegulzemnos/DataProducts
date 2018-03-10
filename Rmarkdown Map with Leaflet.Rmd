@@ -7,8 +7,8 @@ output:
   pdf_document: default
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 ## R Markdown
 I created data kml format from  Google earth with  add path feature then  converted to text document.
@@ -16,6 +16,7 @@ This maps shows Turkey
 
 
 ```{r,echo=TRUE}
+
 activityData <- read.delim('20180307114742-28207-data.txt',header=T)
 vlats <-activityData$latitude
 vlongs<- activityData$longitude
