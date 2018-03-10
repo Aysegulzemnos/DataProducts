@@ -1,0 +1,66 @@
+---
+title: "R Markdown Data Products Week 2 Assignment with Leaflet"
+author: "Aysegul Sonmez"
+date: "March 9, 2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## R Markdown
+I created data kml format from  Google earth with  add path feature then  converted to text document.
+This maps shows Turkey
+
+
+```{r,echo=TRUE}
+activityData <- read.delim('20180307114742-28207-data.txt',header=T)
+vlats <-activityData$latitude
+vlongs<- activityData$longitude
+Clean_activityData<- cbind(vlats,vlongs)
+head(Clean_activityData)
+```
+
+
+```{r,echo=FALSE}
+if(!require(leaflet)) 
+  install.packages("leaflet")
+  library(knitr)
+  library(leaflet)
+  library(dplyr)
+
+  
+  Capadociaicon <- makeIcon(
+  iconUrl = "http://pluspng.com/img-png/dad-and-daughter-png--487.png",
+  iconWidth = 51, iconHeight = 32,
+  iconAnchorX = 51/2, iconAnchorY = 32/2)
+
+```
+  ## Interactive Map - Click on the human and see latitude and longtitude
+```{r,echo=FALSE}  
+  map <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(icon = Capadociaicon ,lat=activityData$latitude,lng=activityData$longitude,
+             popup=paste("Latitude",activityData$latitude,"<br>","Longtitude",activityData$longitude,"<br>"))
+  map  # Print the map
+
+```
+
+
+## Mapping Clusters 
+Mapping Clusters
+When you zoom in to each cluster, the cluster will seperate until you see the individual Markers!!
+
+
+
+```{r , echo=TRUE}
+
+Clean_activityData %>%
+leaflet() %>%
+addTiles() %>%  
+addMarkers(clusterOptions = markerClusterOptions())  
+
+```
+
