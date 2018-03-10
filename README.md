@@ -7,3 +7,5 @@ http://htmlpreview.github.io/?https://github.com/Aysegulzemnos/DataProducts/blob
 
 http://rpubs.com/Aysegulsonmez/368290
 
+https://Aysegulzemnos.github.io/slides/..
+
